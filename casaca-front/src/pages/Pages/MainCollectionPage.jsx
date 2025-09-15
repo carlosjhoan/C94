@@ -2,7 +2,7 @@ import { gql } from "@apollo/client"
 import { useQuery } from "@apollo/client/react"
 import { useEffect } from "react"
 import { CollectionCard } from "../../components/Collection"
-// import config from "../../config"
+import { collectionFields } from "../../configuration"
 
 const GET_MAIN_COLLECTIONS = gql`
     query MainCollections {
@@ -10,7 +10,7 @@ const GET_MAIN_COLLECTIONS = gql`
             name,
             description,
             slug,
-            featured_image {
+            multimedia {
                 url
             },
             tshirts {
@@ -46,11 +46,11 @@ export const MainCollectionPage = () => {
         >
             {data && data.collections && data.collections.map((collection) => (
                 <CollectionCard 
-                    name={collection.name}
-                    slug={collection.slug}
-                    imageURL={collection.featured_image ? collection.featured_image[0].url : ''}
-                    description={collection.description ? collection.description[0].children[0].text : 'No description'}
-                    count={collection.tshirts ? collection.tshirts.length : 0}
+                    name={collection[collectionFields.name]}
+                    slug={collection[collectionFields.slug]}
+                    imageURL={collection[collectionFields.images] ? collection[collectionFields.images][0].url : ''}
+                    description={collection[collectionFields.description] ? collection[collectionFields.description] : 'No description'}
+                    count={collection[collectionFields.tshirts] ? collection[collectionFields.tshirts].length : 0}
                 />
             ))}
         </div>

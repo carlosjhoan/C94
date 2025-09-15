@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import config from "../../config"
+import { tshirtFields } from "../../configuration";
 
 export const JerseyCard = ({ jersey }) => {
 
@@ -10,12 +11,12 @@ export const JerseyCard = ({ jersey }) => {
     // team: string,
     // season: string,
     // price: number,
-    // images: [{
+    // multimedia: [{
     //     url: string,
     // }]
-    // size_options: [{
+    // sizes: [{
     //     size: string,
-    //  in_stock: boolean
+    //     in_stock: number
     // }]
 
 
@@ -39,9 +40,9 @@ export const JerseyCard = ({ jersey }) => {
             const moveY = -(y - 1) * 20;
             console.log("Move in x: ", x)
             
-            img.style.transform = `translate(${moveX*0.0}px, ${moveY*2.5}px)`;
+            img.style.transform = `translate(${moveX*0.0}px, ${moveY*0.0}px)`;
             if (imgHover) {
-                imgHover.style.transform = `translate(${moveX*0.0}px, ${moveY*1.7}px)`;
+                imgHover.style.transform = `translate(${moveX*0.0}px, ${moveY*-1.7}px)`;
             }
         };
 
@@ -73,9 +74,9 @@ export const JerseyCard = ({ jersey }) => {
     return (
         <div className="group/item flex flex-col w-60 bg-white rounded-t-full cursor-pointer shadow-md hover:shadow-xl transition-all ease-in-out delay-50 duration-300">
             <div ref={containerRef} id={`div-container-photo-${jersey.index}`} className="relative overflow-hidden rounded-t-full w-auto h-60 image-container-photo">
-                <img ref={imgRef}   src={`${config.strapiApiUrl}${jersey.images[0].url}`} alt={jersey.team} className={` scale-135 ${jersey.images[1] ? '': 'hover:scale-170'} transition ease-in-out object-fill w-auto h-auto transition-opacity duration-500 delay-30 ${jersey.images[1] ? 'group-hover/item:opacity-0' : ''} `} />
-                {jersey.images[1] && (
-                    <img ref={imgRefHover}   src={`${config.strapiApiUrl}${jersey.images[1]?.url}`} alt={jersey.team} className="absolute  scale-145 hover:scale-170 transition ease-in-out object-cover inset-0 w-auto h-auto opacity-2 z-0 transition-opacity duration-600 delay-60 group-hover/item:opacity-100" />
+                <img ref={imgRef}   src={`${config.strapiApiUrl}${jersey[tshirtFields.images][0].url}`} alt={jersey[tshirtFields.team]} className={` scale-135 ${jersey[tshirtFields.images][1] ? '': 'hover:scale-170'} transition ease-in-out object-fill w-auto h-auto transition-opacity duration-500 delay-30 ${jersey[tshirtFields.images][1] ? 'group-hover/item:opacity-0' : ''} `} />
+                {jersey[tshirtFields.images][1] && (
+                    <img ref={imgRefHover}   src={`${config.strapiApiUrl}${jersey[tshirtFields.images][1]?.url}`} alt={jersey[tshirtFields.team]} className="absolute  scale-145 hover:scale-170 transition ease-in-out object-cover inset-0 w-auto h-auto opacity-2 z-0 transition-opacity duration-600 delay-60 group-hover/item:opacity-100" />
                 )
                 }
                 
@@ -90,10 +91,10 @@ export const JerseyCard = ({ jersey }) => {
             </div>
             
             <div className="flex flex-col justify-between items-center gap-1 pt-0 pb-6 ">
-                <span className="text-lg font-bold">{jersey.player}</span>
-                <span className="text-md text-black">{jersey.team}</span>
-                <span className="text-sm font-bold">{jersey.season}</span>
-                <span className="text-xs text_gray italic">{jersey.variant}</span>
+                <span className="text-lg font-bold">{jersey[tshirtFields.player]}</span>
+                <span className="text-md text-black">{jersey[tshirtFields.team]}</span>
+                <span className="text-sm font-bold">{jersey[tshirtFields.season]}</span>
+                <span className="text-xs text_gray italic">{jersey[tshirtFields.variant]}</span>
                 {/* <span className="text-lg font-bold">${jersey.price}</span> */}
             </div>
 
@@ -102,9 +103,9 @@ export const JerseyCard = ({ jersey }) => {
                     <div
                         className="px-3 pb-3 flex flex-wrap justify-start items-center"
                     >
-                        {jersey.size_options.map((sizeOption, index) => (
+                        {jersey[tshirtFields.sizes].map((sizeOption, index) => (
                             // sizeOption.in_stock && (
-                                <span key={index} className={`flex flex-row justify-center rounded-md border border-gray-400 min-w-5 min- px-1 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2 ${sizeOption.in_stock ? 'bg-green-200' : 'bg-red-200 line-through'}`}>
+                                <span key={index} className={`flex flex-row justify-center rounded-md border border-gray-400 min-w-5 min- px-1 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2 ${sizeOption.in_stock > 0 ? 'bg-green-200' : 'bg-red-200 line-through'}`}>
                                     {sizeOption.size}
                                 </span>
                             // ) 

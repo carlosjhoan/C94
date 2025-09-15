@@ -13,10 +13,10 @@ const GET_CATALOGUE_ITEMS = gql`
             price,
             season,
             variant,
-            images {
+            multimedia {
                 url
             },
-            size_options {
+            sizes {
                 size,
                 in_stock
             },
