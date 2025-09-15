@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tshirts",
+  "info": {
+    "singularName": "tshirt",
+    "pluralName": "tshirts",
+    "displayName": "Tshirt"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "player": {
+      "type": "string"
+    },
+    "story": {
+      "type": "richtext"
+    },
+    "team": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "is_available": {
+      "type": "boolean"
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "collection": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::collection.collection",
+      "inversedBy": "tshirts"
+    },
+    "sizes": {
+      "type": "component",
+      "component": "sizes.size-option",
+      "repeatable": true
+    },
+    "season": {
+      "type": "string"
+    },
+    "multimedia": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
