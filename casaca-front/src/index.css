@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+    --color-wall: #f7f7f7;
+    --color-card: #f3f3f3;
+    --color-bermuda: #78dcca;
+}

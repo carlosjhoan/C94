@@ -12,6 +12,7 @@ export const tshirtFields = {
 }
 
 export const collectionFields = {
+    id: 'documentId',
     name: 'name',
     description: 'description',
     slug: 'slug',

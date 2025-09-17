@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import config from "../../config"
 import { tshirtFields } from "../../configuration";
 
@@ -24,6 +24,19 @@ export const JerseyCard = ({ jersey }) => {
     const imgRef = useRef(null);
     const imgRefHover = useRef(null);
 
+    const [sizeSquare, setSizeSquare] = useState(false);
+    const [sizeButton, setSizeButton] = useState(true);
+
+    const openSizeSquare = () => {
+        setSizeSquare(true);
+        setSizeButton(false);
+    }
+
+    const closeSizeSquare = () => {
+        setSizeSquare(false);
+        setSizeButton(true);
+    }
+
     useEffect(()=>{
         const container = containerRef.current;
         const img = imgRef.current;
@@ -42,7 +55,7 @@ export const JerseyCard = ({ jersey }) => {
             
             img.style.transform = `translate(${moveX*0.0}px, ${moveY*0.0}px)`;
             if (imgHover) {
-                imgHover.style.transform = `translate(${moveX*0.0}px, ${moveY*-1.7}px)`;
+                imgHover.style.transform = `translate(${moveX*0.0}px, ${moveY*0.0}px)`;
             }
         };
 
@@ -72,36 +85,62 @@ export const JerseyCard = ({ jersey }) => {
     }, [])
     //  
     return (
-        <div className="group/item flex flex-col w-60 bg-white rounded-t-full cursor-pointer shadow-md hover:shadow-xl transition-all ease-in-out delay-50 duration-300">
-            <div ref={containerRef} id={`div-container-photo-${jersey.index}`} className="relative overflow-hidden rounded-t-full w-auto h-60 image-container-photo">
-                <img ref={imgRef}   src={`${config.strapiApiUrl}${jersey[tshirtFields.images][0].url}`} alt={jersey[tshirtFields.team]} className={` scale-135 ${jersey[tshirtFields.images][1] ? '': 'hover:scale-170'} transition ease-in-out object-fill w-auto h-auto transition-opacity duration-500 delay-30 ${jersey[tshirtFields.images][1] ? 'group-hover/item:opacity-0' : ''} `} />
+        <div className="group/item flex flex-col w-75 bg-white rounded-t-full cursor-pointer shadow-lg hover:shadow-xl transition-all ease-in-out delay-50 duration-300">
+            <div ref={containerRef} id={`div-container-photo-${jersey.index}`} className="relative  overflow-hidden rounded-t-full w-auto h-75 image-container-photo">
+                <img ref={imgRef}   src={`${config.strapiApiUrl}${jersey[tshirtFields.images][0].url}`} alt={jersey[tshirtFields.team]} className={` scale-135 ${jersey[tshirtFields.images][1] ? '': 'hover:scale-170'} transition ease-in-out object-cover w-auto h-auto transition-opacity duration-500 delay-30 ${jersey[tshirtFields.images][1] ? 'group-hover/item:opacity-0' : ''} `} />
                 {jersey[tshirtFields.images][1] && (
-                    <img ref={imgRefHover}   src={`${config.strapiApiUrl}${jersey[tshirtFields.images][1]?.url}`} alt={jersey[tshirtFields.team]} className="absolute  scale-145 hover:scale-170 transition ease-in-out object-cover inset-0 w-auto h-auto opacity-2 z-0 transition-opacity duration-600 delay-60 group-hover/item:opacity-100" />
-                )
-                }
+                    <img ref={imgRefHover}   src={`${config.strapiApiUrl}${jersey[tshirtFields.images][1]?.url}`} alt={jersey[tshirtFields.team]} className="absolute scale-135 transition inset-0 ease-in-out object-cover w-auto h-auto opacity-2 z-0 transition-opacity duration-600 delay-60 group-hover/item:opacity-100" />
+                )}
                 
             </div>
-            <div className=" w-auto flex flex-row justify-end px-1 items-center">
-                <div className="relative py-1 bg-transparent flex flex-row justify-center">
-                    <div className="absolute mt-1 bg-transparent group-hover/item:bg-black w-0 group-hover/item:w-full group-hover/item:bg-black transition-all ease-in-out duration-400 delay-50 h-6"></div>
-                    <span className=" z-2 p-1 text-gray-500 md:text-gray-300 italic  group-hover/item:text-white font-medium transition-all ease-in-out duration-400 delay-150">
-                        ${jersey.price}
-                    </span>
-                </div>
-            </div>
             
-            <div className="flex flex-col justify-between items-center gap-1 pt-0 pb-6 ">
-                <span className="text-lg font-bold">{jersey[tshirtFields.player]}</span>
-                <span className="text-md text-black">{jersey[tshirtFields.team]}</span>
-                <span className="text-sm font-bold">{jersey[tshirtFields.season]}</span>
+            {/* Información de la camiseta */}
+            <div className="relative flex flex-col justify-between items-start gap-1 px-3 pt-3 pb-4 bg-card">
+                <span className="text-md font-bold text-gray-600">{jersey[tshirtFields.player]} / {jersey[tshirtFields.team]}</span>
                 <span className="text-xs text_gray italic">{jersey[tshirtFields.variant]}</span>
-                {/* <span className="text-lg font-bold">${jersey.price}</span> */}
+                <span className="text-xs text_gray font-medium italic">{jersey[tshirtFields.season]}</span>
+                <span className=" p-1 mt-1 bg-gray-300 text-gray-600 italic text-sm font-medium">
+                    ${jersey.price}
+                </span>
+                {/* Botón de mostrar cuadro de tallas */}
+                {sizeButton && (
+                    <div className="absolute bottom-3 right-3">
+                        <button onClick={openSizeSquare} className="group/sizeBtn p-1 rounded-sm shadow-xs bg-gray-200 transition delay-50 duration-300 ease-in-out hover:bg-gray-300 hover:shadow-xl cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 group-hover/sizeBtn:size-5 transition-all ease-in-out duration-300">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                )}
+                
+                {/* Indicador de tallas */}
+                {sizeSquare && (
+                    <div className="absolute bg-wall bottom-1 right-3 pl-1 py-1 h-16 w-50 border flex flex-col justify-between items-start text-xs font-medium italic opacity-70 ">
+                        <div>
+                            <span>En stock : </span>
+                            <span > M - L - XL</span>
+                        </div>
+                        <span>Por encargo</span>
+                        <span>No disponibles</span>
+                        <div className="absolute top-1 right-1">
+                            <button onClick={closeSizeSquare} className="p-1 rounded-full shadow-sm bg-gray-200 transition delay-50 duration-300 ease-in-out hover:bg-gray-300 hover:shadow-xl cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+
+                            </button>
+                        </div>
+                    </div>
+                )}
+                
             </div>
 
+            
+
             <div>
-                    {/* <span>Tallas disponibles: </span> */}
-                    <div
-                        className="px-3 pb-3 flex flex-wrap justify-start items-center"
+                    {/* Tallas disponibles */}
+                    {/* <div
+                        className="px-3 pb-1 bg-card flex flex-wrap justify-start items-center"
                     >
                         {jersey[tshirtFields.sizes].map((sizeOption, index) => (
                             // sizeOption.in_stock && (
@@ -111,7 +150,7 @@ export const JerseyCard = ({ jersey }) => {
                             // ) 
                             
                         ))}
-                    </div>
+                    </div> */}
             </div>
 
             <div className="relative w-full">
@@ -124,13 +163,6 @@ export const JerseyCard = ({ jersey }) => {
                     <div className="h-2 bg-[#e7191f] group-hover/item:bg-transparent transition-all ease-in-out duration-400 delay-150 w-1/6"></div>
                 </div>
             </div>
-            {/* <div className="flex flex-row h-2 border-solid border-1 hover:bg-black">
-                <div className="w-1/5 bg-black group-hover:bg-white h-auto"></div>
-                <div className="w-1/5 h-auto"></div>
-                <div className="w-1/5 bg-black h-auto"></div>
-                <div className="w-1/5 h-auto"></div>
-                <div className="w-1/5 bg-black h-auto"></div>
-            </div> */}
             {/* <button className="w-full bg-black py-3 text-white cursor-pointer hover:bg-gray-800">Me pongo esta!</button> */}
         </div>
     );

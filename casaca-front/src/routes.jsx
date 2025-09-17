@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { MainLayout } from './components/Layout';
 import { HomePage, MainCollectionPage, Catalogue } from './pages/Pages';
+import { AnyCollection } from './components/Collection';
 // import Home from './pages/Home/Home';
 // import Products from './pages/Products/Products';
 // import ProductDetails from './pages/ProductDetails/ProductDetails';
@@ -30,10 +31,10 @@ const router = createBrowserRouter([
         path: 'catalogo',
         element: <Catalogue />
       },
-      // {
-      //   path: 'products/team/:teamId',
-      //   element: <Products /> // Filtered by team
-      // },
+      {
+        path: 'colecciones/:collectionId',
+        element: <AnyCollection />
+      },
       // {
       //   path: 'cart',
       //   element: <Cart />

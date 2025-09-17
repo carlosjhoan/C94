@@ -9,7 +9,7 @@ const GET_MAIN_COLLECTIONS = gql`
         collections {
             name,
             description,
-            slug,
+            documentId,
             multimedia {
                 url
             },
@@ -42,12 +42,18 @@ export const MainCollectionPage = () => {
 
     return (
         <div
-            className="flex flex-wrap justify-center items-center m-4 gap-5"
+            className="
+            flex flex-wrap 
+            justify-center items-center 
+            p-6
+            gap-5
+            bg-wall
+        "
         >
             {data && data.collections && data.collections.map((collection) => (
                 <CollectionCard 
                     name={collection[collectionFields.name]}
-                    slug={collection[collectionFields.slug]}
+                    id={collection[collectionFields.id]}
                     imageURL={collection[collectionFields.images] ? collection[collectionFields.images][0].url : ''}
                     description={collection[collectionFields.description] ? collection[collectionFields.description] : 'No description'}
                     count={collection[collectionFields.tshirts] ? collection[collectionFields.tshirts].length : 0}

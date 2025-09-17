@@ -1,8 +1,19 @@
 import config from "../../config"
+import { useNavigate } from 'react-router-dom';
 
-export const CollectionCard = ({name, slug, imageURL, description, count}) => {
+export const CollectionCard = ({name, id, imageURL, description, count}) => {
+    const navigate = useNavigate();
+    
     const backgroundStyle = {
         backgroundImage: `url('${config.strapiApiUrl}${imageURL}')`
+    };
+
+    const consoleSlug = (str)=>{
+        console.log(str);
+    }
+
+    const goToAnyCollection = (collectionId) => {
+        navigate(`/colecciones/${collectionId}`);
     };
 
     
@@ -23,8 +34,9 @@ export const CollectionCard = ({name, slug, imageURL, description, count}) => {
                 overflow-hidden
             "
             style={backgroundStyle}
+            
         >   
-            <div className="absolute inset-0 bg-black opacity-15 hover:opacity-40"></div>
+            <div className="absolute inset-0 bg-black opacity-15 hover:opacity-40" onClick={() => goToAnyCollection(id)}></div>
             <div
                 className="relative z-0 p-4 text-white"
             >

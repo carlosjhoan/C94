@@ -29,7 +29,7 @@ export const Catalogue = () => {
     const { data, loading, error } = useQuery(GET_CATALOGUE_ITEMS); 
     
     useEffect(() => {
-        document.title = "Catalogue - C94";
+        document.title = "Catalogo - C94";
         console.log("Página de Catálogo cargada");
         if (data) {
             console.log("Datos extraídos con éxito");
@@ -44,7 +44,7 @@ export const Catalogue = () => {
 
     return (
         <div
-            className="flex flex-wrap justify-center items-center m-4 gap-10 w-auto pt-3 pb-5"
+            className="flex flex-wrap justify-center items-center gap-10 w-auto p-6 bg-wall"
         >
             {data && data.tshirts && data.tshirts.map((item) => (
                 <JerseyCard
