@@ -36,6 +36,16 @@
       "relation": "oneToMany",
       "target": "api::tshirt.tshirt",
       "mappedBy": "collection"
+    },
+    "banner_image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

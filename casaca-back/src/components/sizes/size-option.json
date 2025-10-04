@@ -12,6 +12,9 @@
       "type": "integer",
       "default": 0,
       "min": 0
+    },
+    "is_available": {
+      "type": "boolean"
     }
   },
   "config": {}

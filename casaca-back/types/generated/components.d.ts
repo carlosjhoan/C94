@@ -14,6 +14,7 @@ export interface SizesSizeOption extends Struct.ComponentSchema {
         number
       > &
       Schema.Attribute.DefaultTo<0>;
+    is_available: Schema.Attribute.Boolean;
     size: Schema.Attribute.String;
   };
 }

@@ -384,6 +384,10 @@ export interface ApiCollectionCollection extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    banner_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -448,6 +452,7 @@ export interface ApiTshirtTshirt extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    bg_color: Schema.Attribute.String;
     collection: Schema.Attribute.Relation<
       'manyToOne',
       'api::collection.collection'
