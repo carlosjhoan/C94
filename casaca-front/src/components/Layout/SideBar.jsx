@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { InstagramBlackIcon, FacebookBlackIcon  } from '../../assets/index'
 import { useNavigate } from 'react-router-dom';
 
@@ -72,18 +71,19 @@ export const SideBar = ({closeSideBar, toggle})=>{
                             <button
                                 key={`item-sidebar-${index}`}
                                 className="flex flex-col group items-center cursor-pointer p-2 "
+                                onClick={() => handleClick(item.slug)}
                             >
                                 <span 
                                     className={`
                                         ${toggle ? 'opacity-100' : 'opacity-0'}
-                                        group-hover:scale-110 group-focus:animate-ping
+                                        group-hover:scale-110 group-focus:scale-130
                                         transition-all delay-50 duration-300 ease-in-out
                                     `}
-                                    onClick={() => handleClick(item.slug)}
+                                    
                                 >
                                     {item.name}
                                 </span>
-                                <div className="flex flex-row w-0 items-center opacity-0 group-hover:opacity-100 group-hover:w-1/4 transition-all delay-50 duration-400">
+                                <div className="flex flex-row w-0 opacity-0 group-hover:opacity-100 group-hover:w-1/4 transition-all delay-50 duration-400">
                                     <div className="h-1 bg-[#ffe500] w-1/4"></div>
                                     <div className="h-1 bg-[#14ae5c] w-1/4"></div>
                                     <div className="h-1 bg-[#e7191f] w-1/6"></div>

@@ -8,9 +8,9 @@ export const CollectionCard = ({name, id, imageURL, description, count}) => {
         backgroundImage: `url('${config.strapiApiUrl}${imageURL}')`
     };
 
-    const consoleSlug = (str)=>{
-        console.log(str);
-    }
+    // const consoleSlug = (str)=>{
+    //     console.log(str);
+    // }
 
     const goToAnyCollection = (collectionId) => {
         navigate(`/colecciones/${collectionId}`);
@@ -19,7 +19,7 @@ export const CollectionCard = ({name, id, imageURL, description, count}) => {
     
     return (
         <div
-            className="
+            className={`
                 bg-cover bg-center
                 h-80 w-60
                 rounded-lg
@@ -32,10 +32,11 @@ export const CollectionCard = ({name, id, imageURL, description, count}) => {
                 cursor-pointer
                 relative
                 overflow-hidden
-            "
+            `}
             style={backgroundStyle}
             
-        >   
+        >
+            
             <div className="absolute inset-0 bg-black opacity-15 hover:opacity-40" onClick={() => goToAnyCollection(id)}></div>
             <div
                 className="relative z-0 p-4 text-white"

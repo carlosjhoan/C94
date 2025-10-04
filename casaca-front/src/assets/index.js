@@ -7,7 +7,8 @@ import LogoCroquis from './logo-croquis.svg';
 import Logo from './logo.png';
 import CantonaJersey from './Cantona_front_IA.png'
 import C94Logo from './C94_logo_4.svg'
-import C94PNG from './C94_logo_4-removebg-preview-removebg-preview.png'
+import C94PNG from './main_logo.jpg'
+
 
 export {
     FacebookIcon,

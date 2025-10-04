@@ -30,8 +30,8 @@ export const Header = ()=>{
 
 
     return(
-        <div className="flex flex-col w-full">
-            <div className="flex flex-row justify-between items-center w-full p-4 bg-white">
+        <div className="flex flex-col w-full sticky top-0 z-50 ">
+            <div className="flex flex-row justify-between items-center w-full p-4  bg-white/30 backdrop-blur-2xl">
                 {/* SIDEBAR MENÚ */}
                 <button id="searchToggle" onClick={()=>setSideBarStatus(true)} className="p-2 rounded-full transition delay-50 duration-300 ease-in-out hover:bg-gray-100 cursor-pointer">
                     <div>

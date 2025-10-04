@@ -29,6 +29,7 @@ export const MainCollectionPage = () => {
     useEffect(() => {
         document.title = "Collections - C94";
         console.log("Página de Colecciones cargada");
+        console.log("Loading state:", loading);
         if (data) {
             console.log("Datos extraídos con éxito");
         } else {
@@ -44,10 +45,11 @@ export const MainCollectionPage = () => {
         <div
             className="
             flex flex-wrap 
-            justify-center items-center 
+            justify-center items-start 
             p-6
             gap-5
             bg-wall
+            min-h-screen
         "
         >
             {data && data.collections && data.collections.map((collection) => (
