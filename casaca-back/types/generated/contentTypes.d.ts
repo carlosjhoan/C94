@@ -460,6 +460,7 @@ export interface ApiTshirtTshirt extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    details: Schema.Attribute.Text;
     is_available: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -467,6 +468,10 @@ export interface ApiTshirtTshirt extends Struct.CollectionTypeSchema {
       'api::tshirt.tshirt'
     > &
       Schema.Attribute.Private;
+    model_images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     multimedia: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -475,6 +480,7 @@ export interface ApiTshirtTshirt extends Struct.CollectionTypeSchema {
     price: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     rating: Schema.Attribute.Decimal;
+    seals: Schema.Attribute.String;
     season: Schema.Attribute.String;
     sizes: Schema.Attribute.Component<'sizes.size-option', true>;
     story: Schema.Attribute.RichText;
