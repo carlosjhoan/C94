@@ -1,15 +1,16 @@
 import config from "../../config"
+import { catalogo_banner } from "../../assets";
 
 export const Banner = ({ bannerImageUrl, head, description }) => {
 
     const backgroundStyle = {
-        backgroundImage: `url('${config.strapiApiUrl}${bannerImageUrl}')`,
+        backgroundImage: `url('${bannerImageUrl ? `${config.strapiApiUrl}${bannerImageUrl}` : catalogo_banner}')`,
     };
 
     return (
         <>
             <section 
-                className={`relative h-50 bg-center bg-cover `}
+                className={`relative h-35 bg-center bg-cover `}
                 style={backgroundStyle}
             >
                 <div className="absolute inset-0 bg-black opacity-30 hover:opacity-40 "></div>

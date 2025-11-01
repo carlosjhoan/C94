@@ -8,6 +8,7 @@ import Logo from './logo.png';
 import CantonaJersey from './Cantona_front_IA.png'
 import C94Logo from './C94_logo_4.svg'
 import C94PNG from './main_logo.jpg'
+import catalogo_banner from './catalogo_banner.png'
 
 
 export {
@@ -20,5 +21,5 @@ export {
     Logo,
     CantonaJersey,
     C94Logo,
-    C94PNG
+    C94PNG, catalogo_banner
 };

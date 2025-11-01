@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { MainLayout } from './components/Layout';
 import { HomePage, MainCollectionPage, Catalogue } from './pages/Pages';
 import { AnyCollection } from './components/Collection';
+import { JerseyBuy } from './components/Tshirt';
 // import Home from './pages/Home/Home';
 // import Products from './pages/Products/Products';
 // import ProductDetails from './pages/ProductDetails/ProductDetails';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: 'colecciones/:collectionId',
         element: <AnyCollection />
+      },
+      {
+        path: 'lienzo/:collectionName/:playerName/:teamName/:season/:tshirtId',
+        element: <JerseyBuy />
       },
       // {
       //   path: 'cart',
